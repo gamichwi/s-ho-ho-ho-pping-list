@@ -23,7 +23,15 @@ Router.get('/', (req, res) => {
 
 //Create route  
 app.post('/api/shoppingList/create', ShoppingList.create);
-app.post('/api/shoppingList/update', ShoppingList.update);
+
+//Read route
+app.get('/api/shoppingList/read', ShoppingList.read);
+
+//Update route
+app.put('/api/shoppingList/update', ShoppingList.update);
+
+//Delete route
+app.delete('/api/shoppingList/delete', ShoppingList.delete);
 
 //Start server
 app.listen(4000, () => console.log('Server has started.'))
