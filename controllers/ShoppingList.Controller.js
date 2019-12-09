@@ -5,8 +5,10 @@ module.exports = {
   create: (req, res) => {
     let listItem = new ShoppingList({
       item: req.body.item,
+      quantity: req.body.quantity,
       amount: req.body.amount,
       completed: req.body.completed
+      
     });
     listItem
       .save()

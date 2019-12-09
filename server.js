@@ -16,22 +16,19 @@ app.use(bodyParser.json());
 const ShoppingList = require ('./controllers/ShoppingList.Controller')
 
 //Routes
-//Homepage
+//Homepage (TODO... FIX THIS!!!)
 Router.get('/', (req, res) => {
     res.send('You have reached the Shopping List homepage');
   });
-
 //Create route  
 app.post('/api/shoppingList/create', ShoppingList.create);
-
 //Read route
 app.get('/api/shoppingList/read', ShoppingList.read);
-
 //Update route
 app.put('/api/shoppingList/update', ShoppingList.update);
-
 //Delete route
 app.delete('/api/shoppingList/delete', ShoppingList.delete);
+
 
 //Start server
 app.listen(4000, () => console.log('Server has started.'))
