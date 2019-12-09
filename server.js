@@ -1,4 +1,5 @@
 const express = require('express');
+const Router = express.Router();
 const mongoose = require('mongoose');
 const app = express ();
 const bodyParser = require('body-parser')
@@ -15,7 +16,14 @@ app.use(bodyParser.json());
 const ShoppingList = require ('./controllers/ShoppingList.Controller')
 
 //Routes
+//Homepage
+Router.get('/', (req, res) => {
+    res.send('You have reached the Shopping List homepage');
+  });
+
+//Create route  
 app.post('/api/shoppingList/create', ShoppingList.create);
+app.post('/api/shoppingList/update', ShoppingList.update);
 
 //Start server
 app.listen(4000, () => console.log('Server has started.'))

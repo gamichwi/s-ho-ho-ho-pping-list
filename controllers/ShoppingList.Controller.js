@@ -14,5 +14,15 @@ module.exports = {
         .catch(err => {
             res.json({success: false, result: err})
         })
+    },
+
+    update: (req, res) => {
+        ShoppingList.update({_id: req.body._id}, req.body)
+        .then(itemList => {
+            if(!itemList) res.json({success: false, result: 'List item does not exist'});
+
+        res.json(itemList);
+        
+        })
     }
 }
