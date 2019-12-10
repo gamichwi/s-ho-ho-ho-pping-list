@@ -1,8 +1,6 @@
 const express = require('express');
-const Router = express.Router();
 const mongoose = require('mongoose');
 const app = express ();
-const bodyParser = require('body-parser')
 
 //Database
 mongoose.connect('mongodb://localhost/shoppingList', { useNewUrlParser: true , useUnifiedTopology: true })
@@ -10,24 +8,26 @@ mongoose.connect('mongodb://localhost/shoppingList', { useNewUrlParser: true , u
     .catch(err => console.error(err));
 
 //Middleware
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 //Controller
 const ShoppingList = require ('./controllers/ShoppingList.Controller')
-
+const ShoppingListController = new ShoppingList();
 //Routes
-//Homepage (TODO... FIX THIS!!!)
-Router.get('/', (req, res) => {
+
+//Homepage
+app.get('/', (req, res) => {
     res.send('You have reached the Shopping List homepage');
   });
 //Create route  
-app.post('/api/shoppingList/create', ShoppingList.create);
+app.post('/api/shoppingList/create', ShoppingListController.create);
 //Read route
-app.get('/api/shoppingList/read', ShoppingList.read);
+app.get('/api/shoppingList/read', ShoppingListController.read);
 //Update route
-app.put('/api/shoppingList/update', ShoppingList.update);
+app.put('/api/shoppingList/update', ShoppingListController.update);
 //Delete route
-app.delete('/api/shoppingList/delete', ShoppingList.delete);
+app.delete('/api/shoppingList/delete', ShoppingListController.delete);
 
 
 //Start server
